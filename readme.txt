@@ -1,5 +1,5 @@
 Steps that I had done.
-1. created a databse with tables.
+1. created a databse with tables. (set id as primary key and enable auto increment)
 2. From model added edo.net entity data model.(select all 3 from the table). 
    For example view image
 ---------- After this firstly run your project,check if the server is running or not------
