@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MVC_DatabaseModelStoreContainer" CdmEntityContainer="MVC_DatabaseEntities">
+    <EntitySetMapping Name="BOOKMASTERs">
+      <EntityTypeMapping TypeName="MVC_DatabaseModel.BOOKMASTER">
+        <MappingFragment StoreEntitySet="BOOKMASTER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BookTitle" ColumnName="BookTitle" />
+          <ScalarProperty Name="BookDescription" ColumnName="BookDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
