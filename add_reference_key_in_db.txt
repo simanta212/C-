@@ -1,0 +1,3 @@
+column name int references tablename (column name) 
+-----------Condition required----------------
+Both table most have primary key
