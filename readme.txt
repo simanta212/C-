@@ -11,3 +11,11 @@ Steps that I had done.
    desired page as an index to load it as an index page.
 
 Reference - https://www.youtube.com/watch?v=OLBmtRFFwcQ
+
+create table Author(
+Author_ID int,
+Created_Date date,
+Updated_Date date,
+Is_Discontinued BIT default 'false',
+Author_Name varchar(50),
+);

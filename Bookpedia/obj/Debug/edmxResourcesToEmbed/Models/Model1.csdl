@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVC_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MVC_DatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Authors" EntityType="MVC_DatabaseModel.Author" />
+    <EntitySet Name="books" EntityType="MVC_DatabaseModel.book" />
+    <AssociationSet Name="FK__book__Author__5629CD9C" Association="MVC_DatabaseModel.FK__book__Author__5629CD9C">
+      <End Role="Author" EntitySet="Authors" />
+      <End Role="book" EntitySet="books" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="Author_ID" />
+    </Key>
+    <Property Name="Author_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Created_Date" Type="DateTime" Precision="0" />
+    <Property Name="Updated_Date" Type="DateTime" Precision="0" />
+    <Property Name="Is_Discontinued" Type="Boolean" />
+    <Property Name="Author_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="books" Relationship="MVC_DatabaseModel.FK__book__Author__5629CD9C" FromRole="Author" ToRole="book" />
+  </EntityType>
+  <EntityType Name="book">
+    <Key>
+      <PropertyRef Name="Book_ID" />
+    </Key>
+    <Property Name="Book_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BookDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="Author" Type="Int32" />
+    <NavigationProperty Name="Author1" Relationship="MVC_DatabaseModel.FK__book__Author__5629CD9C" FromRole="book" ToRole="Author" />
+  </EntityType>
+  <Association Name="FK__book__Author__5629CD9C">
+    <End Type="MVC_DatabaseModel.Author" Role="Author" Multiplicity="0..1" />
+    <End Type="MVC_DatabaseModel.book" Role="book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Author">
+        <PropertyRef Name="Author_ID" />
+      </Principal>
+      <Dependent Role="book">
+        <PropertyRef Name="Author" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

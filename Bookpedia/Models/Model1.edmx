@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MVC_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="Author_ID" />
+          </Key>
+          <Property Name="Author_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Created_Date" Type="date" />
+          <Property Name="Updated_Date" Type="date" />
+          <Property Name="Is_Discontinued" Type="bit" />
+          <Property Name="Author_Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="book">
+          <Key>
+            <PropertyRef Name="Book_ID" />
+          </Key>
+          <Property Name="Book_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookTitle" Type="varchar" MaxLength="50" />
+          <Property Name="BookDescription" Type="varchar" MaxLength="500" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Author" Type="int" />
+        </EntityType>
+        <Association Name="FK__book__Author__5629CD9C">
+          <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+          <End Role="book" Type="Self.book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="Author_ID" />
+            </Principal>
+            <Dependent Role="book">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MVC_DatabaseModelStoreContainer">
+          <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="book" EntityType="Self.book" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__book__Author__5629CD9C" Association="Self.FK__book__Author__5629CD9C">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="book" EntitySet="book" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MVC_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MVC_DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="MVC_DatabaseModel.Author" />
+          <EntitySet Name="books" EntityType="MVC_DatabaseModel.book" />
+          <AssociationSet Name="FK__book__Author__5629CD9C" Association="MVC_DatabaseModel.FK__book__Author__5629CD9C">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="book" EntitySet="books" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="Author_ID" />
+          </Key>
+          <Property Name="Author_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Created_Date" Type="DateTime" Precision="0" />
+          <Property Name="Updated_Date" Type="DateTime" Precision="0" />
+          <Property Name="Is_Discontinued" Type="Boolean" />
+          <Property Name="Author_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="books" Relationship="MVC_DatabaseModel.FK__book__Author__5629CD9C" FromRole="Author" ToRole="book" />
+        </EntityType>
+        <EntityType Name="book">
+          <Key>
+            <PropertyRef Name="Book_ID" />
+          </Key>
+          <Property Name="Book_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BookDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Author" Type="Int32" />
+          <NavigationProperty Name="Author1" Relationship="MVC_DatabaseModel.FK__book__Author__5629CD9C" FromRole="book" ToRole="Author" />
+        </EntityType>
+        <Association Name="FK__book__Author__5629CD9C">
+          <End Type="MVC_DatabaseModel.Author" Role="Author" Multiplicity="0..1" />
+          <End Type="MVC_DatabaseModel.book" Role="book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="Author_ID" />
+            </Principal>
+            <Dependent Role="book">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MVC_DatabaseModelStoreContainer" CdmEntityContainer="MVC_DatabaseEntities">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="MVC_DatabaseModel.Author">
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="Author_Name" ColumnName="Author_Name" />
+                <ScalarProperty Name="Is_Discontinued" ColumnName="Is_Discontinued" />
+                <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Author_ID" ColumnName="Author_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="books">
+            <EntityTypeMapping TypeName="MVC_DatabaseModel.book">
+              <MappingFragment StoreEntitySet="book">
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="BookDescription" ColumnName="BookDescription" />
+                <ScalarProperty Name="BookTitle" ColumnName="BookTitle" />
+                <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
