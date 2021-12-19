@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BookimanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="authordata">
+    <Key>
+      <PropertyRef Name="Author_ID" />
+    </Key>
+    <Property Name="Author_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Created_Date" Type="date" Nullable="false" />
+    <Property Name="Updated_Date" Type="date" Nullable="false" />
+    <Property Name="Is_Discontinued" Type="bit" Nullable="false" />
+    <Property Name="Author_Name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bookdata">
+    <Key>
+      <PropertyRef Name="Book_ID" />
+    </Key>
+    <Property Name="Book_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Book_Title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Book_Description" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Author_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__bookdata__Author__32767D0B">
+    <End Role="authordata" Type="Self.authordata" Multiplicity="1" />
+    <End Role="bookdata" Type="Self.bookdata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="authordata">
+        <PropertyRef Name="Author_ID" />
+      </Principal>
+      <Dependent Role="bookdata">
+        <PropertyRef Name="Author_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BookimanModelStoreContainer">
+    <EntitySet Name="authordata" EntityType="Self.authordata" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bookdata" EntityType="Self.bookdata" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__bookdata__Author__32767D0B" Association="Self.FK__bookdata__Author__32767D0B">
+      <End Role="authordata" EntitySet="authordata" />
+      <End Role="bookdata" EntitySet="bookdata" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

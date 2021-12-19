@@ -1,0 +1,58 @@
+﻿@model IEnumerable<webapptesting.Models.authordata>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@if (TempData["AlertMessage1"] != null)
+{<div class="alert alert-success">
+        <strong>Sucess !</strong>@TempData["AlertMessage1"]
+ </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Created_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Updated_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Is_Discontinued)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author_Name)
+        </th>
+        <h4><a href="https://localhost:44332/bookdatas"</a> <strong>Back to Home</strong></h4>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Is_Discontinued)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author_Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Author_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Author_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Author_ID })
+            </td>
+        </tr>
+
+    }
+
+</table>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BookimanModelStoreContainer" CdmEntityContainer="BookimanEntities">
+    <EntitySetMapping Name="authordatas">
+      <EntityTypeMapping TypeName="BookimanModel.authordata">
+        <MappingFragment StoreEntitySet="authordata">
+          <ScalarProperty Name="Author_ID" ColumnName="Author_ID" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+          <ScalarProperty Name="Is_Discontinued" ColumnName="Is_Discontinued" />
+          <ScalarProperty Name="Author_Name" ColumnName="Author_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bookdatas">
+      <EntityTypeMapping TypeName="BookimanModel.bookdata">
+        <MappingFragment StoreEntitySet="bookdata">
+          <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+          <ScalarProperty Name="Book_Title" ColumnName="Book_Title" />
+          <ScalarProperty Name="Book_Description" ColumnName="Book_Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Author_ID" ColumnName="Author_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
